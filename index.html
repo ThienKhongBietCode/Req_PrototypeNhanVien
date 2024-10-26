@@ -3,111 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch vụ Chăm sóc Thú cưng</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Dịch vụ Chăm sóc Thú cưng - BIA Studio</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link đến tệp CSS -->
 </head>
 <body>
-    <header>
-        <h1>Dịch vụ Chăm sóc Thú cưng - BIA Studio</h1>
-    </header>
-    
-    <nav>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h1>BIA Studio</h1>
         <ul>
             <li><a href="#services">Dịch vụ</a></li>
-            <li><a href="#booking">Đặt lịch</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
+            <li><button onclick="toggleSection('booking')">Đặt lịch</button></li>
+            <li><button onclick="toggleSection('contact')">Liên hệ</button></li>
         </ul>
-    </nav>
+    </aside>
 
-    <div class="hero">
-        <div class="hero-content">
-            <h2>Chăm sóc thú cưng của bạn với dịch vụ tốt nhất</h2>
-            <p>Đặt lịch ngay hôm nay để nhận ưu đãi đặc biệt</p>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Chăm sóc thú cưng của bạn với dịch vụ tốt nhất</h2>
+                <p>Đặt lịch ngay hôm nay để nhận ưu đãi đặc biệt</p>
+                <a href="#booking" class="cta-button" onclick="openBooking('spa')">Đặt lịch ngay</a>
+            </div>
         </div>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2>Dịch vụ của chúng tôi</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fa fa-paw fa-3x"></i>
+                    <h3>Grooming</h3>
+                    <p>Dịch vụ làm đẹp cho thú cưng, bao gồm tắm và cắt tỉa lông.</p>
+                    <button onclick="openBooking('grooming')">Đặt lịch</button>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-bath fa-3x"></i>
+                    <h3>Thú cưng Spa</h3>
+                    <p>Dịch vụ spa chuyên nghiệp cho thú cưng của bạn.</p>
+                    <button onclick="openBooking('spa')">Đặt lịch</button>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-bed fa-3x"></i>
+                    <h3>Khách sạn thú cưng</h3>
+                    <p>Cung cấp chỗ ở thoải mái cho thú cưng khi bạn đi xa.</p>
+                    <button onclick="openBooking('hotel')">Đặt lịch</button>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-heart fa-3x"></i>
+                    <h3>Chăm sóc sức khỏe</h3>
+                    <p>Kiểm tra sức khỏe định kỳ và chăm sóc y tế cho thú cưng.</p>
+                    <button onclick="openBooking('health')">Đặt lịch</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Form Section -->
+        <section id="booking" class="hidden">
+            <h2>Đặt lịch</h2>
+            <form id="booking-form">
+                <input type="hidden" id="service" name="service">
+                <label for="name">Tên của bạn:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="date">Ngày đặt:</label>
+                <input type="date" id="date" name="date" required>
+                <label for="time">Giờ đặt:</label>
+                <input type="time" id="time" name="time" required>
+                <label for="contact">Thông tin liên lạc:</label>
+                <input type="text" id="contact" name="contact" required>
+                <button type="submit">Xác nhận đặt lịch</button>
+            </form>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="hidden">
+            <h2>Liên hệ với chúng tôi</h2>
+            <form id="contact-form">
+                <label for="contact-name">Tên của bạn:</label>
+                <input type="text" id="contact-name" name="contact-name" required>
+                <label for="contact-email">Email:</label>
+                <input type="email" id="contact-email" name="contact-email" required>
+                <label for="contact-message">Tin nhắn:</label>
+                <textarea id="contact-message" name="contact-message" rows="4" required></textarea>
+                <button type="submit">Gửi liên hệ</button>
+            </form>
+        </section>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
     </div>
 
-    <section id="services" class="services">
-        <h2>Dịch vụ của chúng tôi</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <h3>Spa & Grooming</h3>
-                <p>Dịch vụ làm đẹp và chăm sóc toàn diện cho thú cưng</p>
-                <button onclick="openBooking('spa')">Đặt lịch</button>
-            </div>
-            <div class="service-card">
-                <h3>Pet Sitting</h3>
-                <p>Dịch vụ trông giữ thú cưng chuyên nghiệp</p>
-                <button onclick="openBooking('sitting')">Đặt lịch</button>
-            </div>
-            <div class="service-card">
-                <h3>Tư vấn sức khỏe</h3>
-                <p>Dịch vụ tư vấn về sức khỏe và dinh dưỡng</p>
-                <button onclick="openBooking('health')">Đặt lịch</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="booking">
-        <form class="booking-form" onsubmit="submitBooking(event)">
-            <h2>Đặt lịch dịch vụ</h2>
-            <div class="form-group">
-                <label for="customerName">Họ và tên</label>
-                <input type="text" id="customerName" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Số điện thoại</label>
-                <input type="tel" id="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="petName">Tên thú cưng</label>
-                <input type="text" id="petName" required>
-            </div>
-            <div class="form-group">
-                <label for="petType">Loại thú cưng</label>
-                <select id="petType" required>
-                    <option value="">Chọn loại thú cưng</option>
-                    <option value="dog">Chó</option>
-                    <option value="cat">Mèo</option>
-                    <option value="other">Khác</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="service">Dịch vụ</label>
-                <select id="service" required>
-                    <option value="">Chọn dịch vụ</option>
-                    <option value="spa">Spa & Grooming</option>
-                    <option value="sitting">Pet Sitting</option>
-                    <option value="health">Tư vấn sức khỏe</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="date">Ngày đặt lịch</label>
-                <input type="date" id="date" required>
-            </div>
-            <div class="form-group">
-                <label for="time">Giờ đặt lịch</label>
-                <input type="time" id="time" required>
-            </div>
-            <div class="form-group">
-                <label for="notes">Ghi chú thêm</label>
-                <textarea id="notes" rows="4"></textarea>
-            </div>
-            <button type="submit" class="action-button">Đặt lịch</button>
-        </form>
-    </section>
-
-    <footer id="contact">
-        <h3>Liên hệ với chúng tôi</h3>
-        <p>Email: info@petcare.com</p>
-        <p>Điện thoại: 0123 456 789</p>
-        <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
-    </footer>
-
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script> <!-- Link đến tệp JavaScript -->
 </body>
 </html>

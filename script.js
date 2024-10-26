@@ -1,46 +1,38 @@
-// Xử lý đặt lịch
+function toggleSection(sectionId) {
+    // Ẩn tất cả các phần
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    // Hiện phần được chọn
+    document.getElementById(sectionId).classList.remove('hidden');
+}
+
 function openBooking(service) {
     document.getElementById('service').value = service;
-    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+    toggleSection('booking');
 }
 
-function submitBooking(event) {
+document.getElementById('booking-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    
-    // Lấy thông tin từ form
-    const formData = {
-        customerName: document.getElementById('customerName').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        petName: document.getElementById('petName').value,
-        petType: document.getElementById('petType').value,
-        service: document.getElementById('service').value,
-        date: document.getElementById('date').value,
-        time: document.getElementById('time').value,
-        notes: document.getElementById('notes').value
-    };
+    // Xử lý đặt lịch ở đây
+    showToast('Đặt lịch thành công!');
+    this.reset();
+    toggleSection('services');
+});
 
-    // Kiểm tra dữ liệu
-    if (!validateBooking(formData)) {
-        return;
-    }
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Xử lý gửi liên hệ ở đây
+    showToast('Gửi liên hệ thành công!');
+    this.reset();
+    toggleSection('services');
+});
 
-    // Lưu đặt lịch vào localStorage (trong thực tế sẽ gửi lên server)
-    saveBooking(formData);
-
-    // Hiển thị thông báo thành công
-    alert('Đặt lịch thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
-    document.querySelector('.booking-form').reset();
-}
-
-function validateBooking(data) {
-    // Kiểm tra dữ liệu (thêm điều kiện nếu cần)
-    return true;
-}
-
-function saveBooking(data) {
-    // Lưu vào localStorage
-    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-    bookings.push(data);
-    localStorage.setItem('bookings', JSON.stringify(bookings));
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.style.display = 'block';
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000);
 }
