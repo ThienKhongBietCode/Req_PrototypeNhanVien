@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Dịch Vụ Thú Cưng</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Quản Lý Dịch Vụ Thú Cưng</h1>
+    </header>
+    
+    <div class="container">
+        <nav>
+            <h2>Menu</h2>
+            <a href="#" onclick="showPage('customer-management')" class="active">Quản Lý Khách Hàng</a>
+            <a href="#" onclick="showPage('service-management')">Quản Lý Dịch Vụ</a>
+            <a href="#" onclick="showPage('booking-management')">Quản Lý Đặt Lịch</a>
+            <a href="#" onclick="showPage('inventory-management')">Quản Lý Tồn Kho</a>
+            <a href="#" onclick="showPage('customer-support')">Hỗ Trợ Khách Hàng</a>
+        </nav>
+
+        <main>
+            <!-- Quản Lý Khách Hàng -->
+            <div id="customer-management" class="page">
+                <h2>Quản Lý Khách Hàng</h2>
+                <form id="add-customer-form" class="form-group">
+                    <input type="text" id="customer-name" placeholder="Tên Khách Hàng" required>
+                    <input type="text" id="customer-address" placeholder="Địa Chỉ" required>
+                    <input type="tel" id="customer-phone" placeholder="Số Điện Thoại" required>
+                    <input type="email" id="customer-email" placeholder="Email" required>
+                    <button type="submit" class="action-button">Thêm Khách Hàng</button>
+                </form>
+                <h3>Danh Sách Khách Hàng</h3>
+                <ul id="customer-list"></ul>
+            </div>
+
+            <!-- Quản Lý Dịch Vụ -->
+            <div id="service-management" class="page hidden">
+                <h2>Quản Lý Dịch Vụ</h2>
+                <form id="add-service-form" class="form-group">
+                    <input type="text" id="service-name" placeholder="Tên Dịch Vụ" required>
+                    <input type="text" id="service-description" placeholder="Mô Tả" required>
+                    <button type="submit" class="action-button">Thêm Dịch Vụ</button>
+                </form>
+                <h3>Danh Sách Dịch Vụ</h3>
+                <ul id="service-list"></ul>
+
+                <h3>Phản Hồi Khách Hàng</h3>
+                <form id="add-feedback-form" class="form-group">
+                    <input type="text" id="feedback-customer-name" placeholder="Tên Khách Hàng" required>
+                    <textarea id="feedback-message" placeholder="Nhập Phản Hồi" required></textarea>
+                    <button type="submit" class="action-button">Gửi Phản Hồi</button>
+                </form>
+                <h3>Danh Sách Phản Hồi</h3>
+                <ul id="feedback-list"></ul>
+            </div>
+
+            <!-- Quản Lý Đặt Lịch -->
+            <div id="booking-management" class="page hidden">
+                <h2>Quản Lý Đặt Lịch</h2>
+                <form id="add-booking-form" class="form-group">
+                    <input type="text" id="booking-customer" placeholder="Tên Khách Hàng" required>
+                    <input type="date" id="booking-date" required>
+                    <select id="booking-service" required>
+                        <option value="" disabled selected>Chọn Dịch Vụ</option>
+                    </select>
+                    <button type="submit" class="action-button">Đặt Lịch</button>
+                </form>
+                <h3>Danh Sách Đặt Lịch</h3>
+                <ul id="booking-list"></ul>
+            </div>
+
+            <!-- Quản Lý Tồn Kho -->
+            <div id="inventory-management" class="page hidden">
+                <h2>Quản Lý Tồn Kho</h2>
+                <form id="add-inventory-form" class="form-group">
+                    <input type="text" id="inventory-item" placeholder="Tên Mặt Hàng" required>
+                    <input type="number" id="inventory-quantity" placeholder="Số Lượng" required>
+                    <button type="submit" class="action-button">Thêm Tồn Kho</button>
+                </form>
+                <h3>Danh Sách Tồn Kho</h3>
+                <ul id="inventory-list"></ul>
+            </div>
+
+            <!-- Hỗ Trợ Khách Hàng -->
+            <div id="customer-support" class="page hidden">
+                <h2>Hỗ Trợ Khách Hàng</h2>
+                <p>Chức năng hỗ trợ khách hàng sẽ được cập nhật sau.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
