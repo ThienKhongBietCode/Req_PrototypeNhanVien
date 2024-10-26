@@ -3,94 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Dịch Vụ Thú Cưng</title>
+    <title>Dịch vụ Chăm sóc Thú cưng</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Quản Lý Dịch Vụ Thú Cưng</h1>
+        <h1>Dịch vụ Chăm sóc Thú cưng - BIA Studio</h1>
     </header>
     
-    <div class="container">
-        <nav>
-            <h2>Menu</h2>
-            <a href="#" onclick="showPage('customer-management')" class="active">Quản Lý Khách Hàng</a>
-            <a href="#" onclick="showPage('service-management')">Quản Lý Dịch Vụ</a>
-            <a href="#" onclick="showPage('booking-management')">Quản Lý Đặt Lịch</a>
-            <a href="#" onclick="showPage('inventory-management')">Quản Lý Tồn Kho</a>
-            <a href="#" onclick="showPage('customer-support')">Hỗ Trợ Khách Hàng</a>
-        </nav>
+    <nav>
+        <ul>
+            <li><a href="#services">Dịch vụ</a></li>
+            <li><a href="#booking">Đặt lịch</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+    </nav>
 
-        <main>
-            <!-- Quản Lý Khách Hàng -->
-            <div id="customer-management" class="page">
-                <h2>Quản Lý Khách Hàng</h2>
-                <form id="add-customer-form" class="form-group">
-                    <input type="text" id="customer-name" placeholder="Tên Khách Hàng" required>
-                    <input type="text" id="customer-address" placeholder="Địa Chỉ" required>
-                    <input type="tel" id="customer-phone" placeholder="Số Điện Thoại" required>
-                    <input type="email" id="customer-email" placeholder="Email" required>
-                    <button type="submit" class="action-button">Thêm Khách Hàng</button>
-                </form>
-                <h3>Danh Sách Khách Hàng</h3>
-                <ul id="customer-list"></ul>
-            </div>
-
-            <!-- Quản Lý Dịch Vụ -->
-            <div id="service-management" class="page hidden">
-                <h2>Quản Lý Dịch Vụ</h2>
-                <form id="add-service-form" class="form-group">
-                    <input type="text" id="service-name" placeholder="Tên Dịch Vụ" required>
-                    <input type="text" id="service-description" placeholder="Mô Tả" required>
-                    <button type="submit" class="action-button">Thêm Dịch Vụ</button>
-                </form>
-                <h3>Danh Sách Dịch Vụ</h3>
-                <ul id="service-list"></ul>
-
-                <h3>Phản Hồi Khách Hàng</h3>
-                <form id="add-feedback-form" class="form-group">
-                    <input type="text" id="feedback-customer-name" placeholder="Tên Khách Hàng" required>
-                    <textarea id="feedback-message" placeholder="Nhập Phản Hồi" required></textarea>
-                    <button type="submit" class="action-button">Gửi Phản Hồi</button>
-                </form>
-                <h3>Danh Sách Phản Hồi</h3>
-                <ul id="feedback-list"></ul>
-            </div>
-
-            <!-- Quản Lý Đặt Lịch -->
-            <div id="booking-management" class="page hidden">
-                <h2>Quản Lý Đặt Lịch</h2>
-                <form id="add-booking-form" class="form-group">
-                    <input type="text" id="booking-customer" placeholder="Tên Khách Hàng" required>
-                    <input type="date" id="booking-date" required>
-                    <select id="booking-service" required>
-                        <option value="" disabled selected>Chọn Dịch Vụ</option>
-                    </select>
-                    <button type="submit" class="action-button">Đặt Lịch</button>
-                </form>
-                <h3>Danh Sách Đặt Lịch</h3>
-                <ul id="booking-list"></ul>
-            </div>
-
-            <!-- Quản Lý Tồn Kho -->
-            <div id="inventory-management" class="page hidden">
-                <h2>Quản Lý Tồn Kho</h2>
-                <form id="add-inventory-form" class="form-group">
-                    <input type="text" id="inventory-item" placeholder="Tên Mặt Hàng" required>
-                    <input type="number" id="inventory-quantity" placeholder="Số Lượng" required>
-                    <button type="submit" class="action-button">Thêm Tồn Kho</button>
-                </form>
-                <h3>Danh Sách Tồn Kho</h3>
-                <ul id="inventory-list"></ul>
-            </div>
-
-            <!-- Hỗ Trợ Khách Hàng -->
-            <div id="customer-support" class="page hidden">
-                <h2>Hỗ Trợ Khách Hàng</h2>
-                <p>Chức năng hỗ trợ khách hàng sẽ được cập nhật sau.</p>
-            </div>
-        </main>
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Chăm sóc thú cưng của bạn với dịch vụ tốt nhất</h2>
+            <p>Đặt lịch ngay hôm nay để nhận ưu đãi đặc biệt</p>
+        </div>
     </div>
+
+    <section id="services" class="services">
+        <h2>Dịch vụ của chúng tôi</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Spa & Grooming</h3>
+                <p>Dịch vụ làm đẹp và chăm sóc toàn diện cho thú cưng</p>
+                <button onclick="openBooking('spa')">Đặt lịch</button>
+            </div>
+            <div class="service-card">
+                <h3>Pet Sitting</h3>
+                <p>Dịch vụ trông giữ thú cưng chuyên nghiệp</p>
+                <button onclick="openBooking('sitting')">Đặt lịch</button>
+            </div>
+            <div class="service-card">
+                <h3>Tư vấn sức khỏe</h3>
+                <p>Dịch vụ tư vấn về sức khỏe và dinh dưỡng</p>
+                <button onclick="openBooking('health')">Đặt lịch</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+        <form class="booking-form" onsubmit="submitBooking(event)">
+            <h2>Đặt lịch dịch vụ</h2>
+            <div class="form-group">
+                <label for="customerName">Họ và tên</label>
+                <input type="text" id="customerName" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="petName">Tên thú cưng</label>
+                <input type="text" id="petName" required>
+            </div>
+            <div class="form-group">
+                <label for="petType">Loại thú cưng</label>
+                <select id="petType" required>
+                    <option value="">Chọn loại thú cưng</option>
+                    <option value="dog">Chó</option>
+                    <option value="cat">Mèo</option>
+                    <option value="other">Khác</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="service">Dịch vụ</label>
+                <select id="service" required>
+                    <option value="">Chọn dịch vụ</option>
+                    <option value="spa">Spa & Grooming</option>
+                    <option value="sitting">Pet Sitting</option>
+                    <option value="health">Tư vấn sức khỏe</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Ngày đặt lịch</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Giờ đặt lịch</label>
+                <input type="time" id="time" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Ghi chú thêm</label>
+                <textarea id="notes" rows="4"></textarea>
+            </div>
+            <button type="submit" class="action-button">Đặt lịch</button>
+        </form>
+    </section>
+
+    <footer id="contact">
+        <h3>Liên hệ với chúng tôi</h3>
+        <p>Email: info@petcare.com</p>
+        <p>Điện thoại: 0123 456 789</p>
+        <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

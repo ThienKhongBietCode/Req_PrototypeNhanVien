@@ -1,90 +1,46 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // DOM elements
-    const customerList = document.getElementById('customer-list');
-    const serviceList = document.getElementById('service-list');
-    const bookingList = document.getElementById('booking-list');
-    const inventoryList = document.getElementById('inventory-list');
-    const feedbackList = document.getElementById('feedback-list');
-    const bookingServiceSelect = document.getElementById('booking-service');
+// Xử lý đặt lịch
+function openBooking(service) {
+    document.getElementById('service').value = service;
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+}
 
-    // Add customer
-    document.getElementById('add-customer-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const name = document.getElementById('customer-name').value;
-        const address = document.getElementById('customer-address').value;
-        const phone = document.getElementById('customer-phone').value;
-        const email = document.getElementById('customer-email').value;
+function submitBooking(event) {
+    event.preventDefault();
+    
+    // Lấy thông tin từ form
+    const formData = {
+        customerName: document.getElementById('customerName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        petName: document.getElementById('petName').value,
+        petType: document.getElementById('petType').value,
+        service: document.getElementById('service').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        notes: document.getElementById('notes').value
+    };
 
-        const li = document.createElement('li');
-        li.textContent = `${name} - ${address} - ${phone} - ${email}`;
-        customerList.appendChild(li);
-        this.reset();
-    });
+    // Kiểm tra dữ liệu
+    if (!validateBooking(formData)) {
+        return;
+    }
 
-    // Add service
-    document.getElementById('add-service-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const name = document.getElementById('service-name').value;
-        const description = document.getElementById('service-description').value;
+    // Lưu đặt lịch vào localStorage (trong thực tế sẽ gửi lên server)
+    saveBooking(formData);
 
-        const li = document.createElement('li');
-        li.textContent = `${name} - ${description}`;
-        serviceList.appendChild(li);
+    // Hiển thị thông báo thành công
+    alert('Đặt lịch thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+    document.querySelector('.booking-form').reset();
+}
 
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        bookingServiceSelect.appendChild(option);
-        this.reset();
-    });
+function validateBooking(data) {
+    // Kiểm tra dữ liệu (thêm điều kiện nếu cần)
+    return true;
+}
 
-    // Add booking
-    document.getElementById('add-booking-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const customer = document.getElementById('booking-customer').value;
-        const date = document.getElementById('booking-date').value;
-        const service = document.getElementById('booking-service').value;
-
-        const li = document.createElement('li');
-        li.textContent = `${customer} - ${date} - ${service}`;
-        bookingList.appendChild(li);
-        this.reset();
-    });
-
-    // Add inventory
-    document.getElementById('add-inventory-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const item = document.getElementById('inventory-item').value;
-        const quantity = document.getElementById('inventory-quantity').value;
-
-        const li = document.createElement('li');
-        li.textContent = `${item} - ${quantity}`;
-        inventoryList.appendChild(li);
-        this.reset();
-    });
-
-    // Add feedback
-    document.getElementById('add-feedback-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const customerName = document.getElementById('feedback-customer-name').value;
-        const feedback = document.getElementById('feedback-message').value;
-
-        const li = document.createElement('li');
-        li.textContent = `${customerName}: ${feedback}`;
-        feedbackList.appendChild(li);
-        this.reset();
-    });
-});
-
-// Show page function
-function showPage(pageId) {
-    const pages = document.querySelectorAll('main > div');
-    pages.forEach(page => {
-        page.style.display = page.id === pageId ? 'block' : 'none';
-    });
-
-    const links = document.querySelectorAll('nav a');
-    links.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('onclick').includes(pageId));
-    });
+function saveBooking(data) {
+    // Lưu vào localStorage
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    bookings.push(data);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
 }
